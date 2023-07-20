@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
     path('', include('ecommerce_account.urls')),
+    path('', include('ecommerce_products.urls')),
     path('header', header_view, name='header_view'),
     path('footer', footer_view, name='footer_view'),
 ]
