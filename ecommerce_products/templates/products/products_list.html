@@ -17,12 +17,14 @@
                                     <p>{{ product.description | truncatewords:4 }}</p>
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبـد خریـد</a>
                                 </div>
+                                <a href="{% url 'product_detail' product.slug %}">
                                 <div class="product-overlay">
                                     <div class="overlay-content">
-                                        <h2>{{ product.price }} ريال</h2>
+                                        <h2>مشاهده محصول</h2>
                                         <p>{{ product.description | truncatewords:4 }}</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبـد خریـد</a>
                                     </div>
+                                        </a>
                                 </div>
                             </div>
                             <div class="choose">

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.html import mark_safe
+from django.db.models.signals import pre_save
 
 from ecommerce_products.utils import *
 
@@ -11,6 +12,7 @@ class ProductManager(models.Manager):
 
 class Product(models.Model):
     title = models.CharField(max_length=150, verbose_name='عنوان')
+    slug = models.SlugField(blank=True, unique=True)
     description = models.TextField(verbose_name='توضیحات')
     price = models.IntegerField(verbose_name='قیمت')
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='عکس محصول')
@@ -29,3 +31,9 @@ class Product(models.Model):
         return self.title
 
 
+def pre_save_reciver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = uniqe_slug_gen(instance)
+
+
+pre_save.connect(pre_save_reciver, sender=Product)

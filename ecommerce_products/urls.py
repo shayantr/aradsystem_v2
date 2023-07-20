@@ -6,4 +6,5 @@ from ecommerce_products.views import *
 urlpatterns = [
     path('products-fbv', products_view),
     path('products', ProductsList.as_view()),
+    path('products/<slug>', product_detail_view, name='product_detail')
 ]
