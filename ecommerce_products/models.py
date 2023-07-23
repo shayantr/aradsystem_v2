@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.db import models
 from django.utils.html import mark_safe
 from django.db.models.signals import pre_save
@@ -8,6 +9,10 @@ from ecommerce_products.utils import *
 class ProductManager(models.Manager):
     def get_active_products(self):
         return self.get_queryset().filter(active=True)
+
+    def search(self, query):
+        lookup = Q(title__icontains=query) | Q(description__icontains=query)
+        return self.get_queryset().filter(lookup, active=True).distinct()
 
 
 class Product(models.Model):
@@ -29,6 +34,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
 
 
 def pre_save_reciver(sender, instance, *args, **kwargs):
