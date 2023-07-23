@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django_render_partial',
     'ecommerce_account',
     'ecommerce_products',
+    'ecommerce_tag',
+    'ecommerce_category',
 ]
 
 MIDDLEWARE = [

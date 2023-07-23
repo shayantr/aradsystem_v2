@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.html import mark_safe
 from django.db.models.signals import pre_save
 
+from ecommerce_category.models import ProductCategory
 from ecommerce_products.utils import *
 
 # Create your models here.
@@ -11,8 +12,15 @@ class ProductManager(models.Manager):
         return self.get_queryset().filter(active=True)
 
     def search(self, query):
-        lookup = Q(title__icontains=query) | Q(description__icontains=query)
+        lookup = (Q(title__icontains=query) |
+                  Q(description__icontains=query) |
+                  Q(tags__title__icontains=query)
+                  )
+
         return self.get_queryset().filter(lookup, active=True).distinct()
+
+    def get_products_bycategory(self, category_name):
+        return self.get_queryset().filter(categories__name__iexact=category_name, active=True)
 
 
 class Product(models.Model):
@@ -22,6 +30,7 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='قیمت')
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='عکس محصول')
     active = models.BooleanField(default=False, verbose_name='فعال')
+    categories = models.ManyToManyField(ProductCategory, blank=True ,related_name='prodcuts', verbose_name='دسته بندی ها')
 
     objects = ProductManager()
 
@@ -34,6 +43,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_tags(self):
+        return "\n".join([tag.title for tag in self.tags.all()])
 
 
 
