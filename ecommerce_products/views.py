@@ -48,5 +48,12 @@ class SearchProductsView(ListView):
             query = request.GET.get('q')
             return Product.objects.search(query)
 
+def product_categories_partial(request):
+    categories = ProductCategory.objects.all()
+    context = {
+        'categories':categories
+    }
+    return render(request, 'products/products_categories_partial.html', context)
+
 
 

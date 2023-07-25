@@ -1,4 +1,5 @@
 {% load static %}
+{% url 'arad:home' as home_url %}
 <header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
 			<div class="container">
@@ -80,8 +81,8 @@
 						</div>
 						<div class="mainmenu pull-right">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="{% url 'home' %}" class="active">خـانه</a></li>
-								<li class="dropdown"><a href="#">فروشگـاه<i class="fa fa-angle-down"></i></a>
+								<li><a href="{% url 'home' %}">خـانه</a></li>
+								<li class="dropdown"><a href="{% url 'products' %}">فروشگـاه<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">محصولات</a></li>
 										<li><a href="product-details.html">جزئیات محصولات</a></li>

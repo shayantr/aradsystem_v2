@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.db import models
 from django.utils.html import mark_safe
 from django.db.models.signals import pre_save
-
+from ecommerce_tag.models import Tag
 from ecommerce_category.models import ProductCategory
 from ecommerce_products.utils import *
 
@@ -31,6 +31,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='عکس محصول')
     active = models.BooleanField(default=False, verbose_name='فعال')
     categories = models.ManyToManyField(ProductCategory, blank=True ,related_name='prodcuts', verbose_name='دسته بندی ها')
+    tags = models.ManyToManyField(Tag, related_name='tag', blank=True)
 
     objects = ProductManager()
 

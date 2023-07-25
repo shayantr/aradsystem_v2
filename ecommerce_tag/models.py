@@ -1,8 +1,6 @@
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 
-from ecommerce_products.models import Product
-
 from ecommerce_tag.utils import *
 # Create your models here.
 class Tag(models.Model):
@@ -10,7 +8,6 @@ class Tag(models.Model):
     slug = models.SlugField()
     timestamp = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
-    products = models.ManyToManyField(Product, related_name='tags', blank=True)
 
     def __str__(self):
         return self.title
@@ -26,4 +23,3 @@ def tag_pre_save_reciver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(tag_pre_save_reciver, sender=Tag)
-

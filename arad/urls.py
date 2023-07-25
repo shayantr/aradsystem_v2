@@ -19,11 +19,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import *
+
+app_name = 'arad'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
     path('', include('ecommerce_account.urls')),
     path('', include('ecommerce_products.urls')),
+    # path('', include('ecommerce_sliders')),
     path('header', header_view, name='header_view'),
     path('footer', footer_view, name='footer_view'),
 ]
