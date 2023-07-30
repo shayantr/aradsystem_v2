@@ -16,6 +16,7 @@ def upload_image_path(instance, filename):
     final_name = f"{instance.id}-{instance.title}{ext}"
     return f'products/{year}/{month}/{instance.title}/{final_name}'
 
+
 def random_string(size=10, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for i in range(size))
 

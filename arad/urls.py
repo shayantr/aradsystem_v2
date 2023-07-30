@@ -26,6 +26,8 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('', include('ecommerce_account.urls')),
     path('', include('ecommerce_products.urls')),
+    path('', include('contactus.urls')),
+    path('', include('ecommerce_cart.urls')),
     # path('', include('ecommerce_sliders')),
     path('header', header_view, name='header_view'),
     path('footer', footer_view, name='footer_view'),

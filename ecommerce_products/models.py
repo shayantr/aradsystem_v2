@@ -56,3 +56,12 @@ def pre_save_reciver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pre_save_reciver, sender=Product)
+
+class ProductGallery(models.Model):
+    title = models.CharField(max_length=150, verbose_name='عنوان')
+    image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='عکس گالری')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'محصولات'
+        verbose_name_plural = 'تصویر محصول'

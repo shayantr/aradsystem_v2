@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'ecommerce_tag',
     'ecommerce_category',
     'ecommerce_sliders',
+    'contactus',
+    'site_settings',
+    'ecommerce_cart',
 ]
 
 MIDDLEWARE = [
